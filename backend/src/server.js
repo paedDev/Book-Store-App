@@ -1,17 +1,19 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { connectDb } from "./src/config/db.js";
-import authRoutes from "./src/routes/authRoutes.js";
+import connectDb from "./config/db.js";
+import authRoutes from "./routes/authRoutes.js";
 dotenv.config();
 const app = express();
-const PORT = 5001;
+const PORT = process.env.PORT || 5001;
 
 // app.use(cors());
+// middleware help get json data
 app.use(express.json());
 
 app.get("/hello", (req, res) => {
   res.send("hello");
+  // testing purposes
 });
 app.use("/api/auth", authRoutes);
 connectDb().then(() => {
