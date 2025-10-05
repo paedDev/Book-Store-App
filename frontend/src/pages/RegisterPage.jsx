@@ -66,17 +66,20 @@ const RegisterPage = () => {
   return (
     <div className="max-w-4xl h-screen mx-auto p-10  flex items-center justify-center">
       <div className="flex  md:flex-row flex-col-reverse justify-around shadow-2xl rounded-xl p-10 w-full space-x-20 lg:space-y-0 space-y-10">
-        <div className="flex  items-center justify-center w-full">
+        <div className="flex flex-col items-center justify-center w-full">
           {/* <img
             src="https://tse1.mm.bing.net/th/id/OIP.wxiaLh1K6MaFKpeagGyxeAHaE7?pid=Api&P=0&h=220"
             alt=""
             className=" bg-blue-400 object-center lg:size-full rounded-xl"
           /> */}
-          <figure className="size-full">
+          <h1 className="text-xl font-bold mb-4 text-center ">
+            Join Kabooker — Register Your Account
+          </h1>
+          <figure className="w-full h-96 rounded-xl overflow-hidden  shadow-md">
             <BookCanvas />
           </figure>
         </div>
-        <div className="w-full space-y-10 ">
+        <div className="w-full space-y-10 mt-8 ">
           <div className="flex space-x-8 justify-around ">
             <Link
               to={"/login"}
