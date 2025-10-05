@@ -8,7 +8,11 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-// app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
 // middleware help get json data
 app.use(express.json());
 
