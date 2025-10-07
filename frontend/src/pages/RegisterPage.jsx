@@ -6,7 +6,8 @@ import axios from "axios";
 import { MdMarkEmailUnread } from "react-icons/md";
 import { FaUserLarge } from "react-icons/fa6";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { FaUsersCog } from "react-icons/fa";
+import { FaUsersCog, FaRegEyeSlash, FaRegEye } from "react-icons/fa";
+
 const RegisterPage = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -16,6 +17,11 @@ const RegisterPage = () => {
     password: "",
     role: "",
   });
+  const [checkPassword, setCheckPassword] = useState(false);
+
+  const handleCheckPassword = () => {
+    setCheckPassword((prevCheckPassword) => !prevCheckPassword);
+  };
   const handleChange = (e) => {
     setForm((prev) => ({
       ...prev,
@@ -108,7 +114,7 @@ const RegisterPage = () => {
                 onChange={handleChange}
                 placeholder="Enter your name"
                 name="name"
-                className="border-none outline-none placeholder:text-gray-400"
+                className="w-full border-none outline-none placeholder:text-gray-400"
               />
               <div className="absolute w-0 group-hover:w-full duration-300 transition-all  h-[2px] bg-black bottom-1 left-0"></div>
             </div>
@@ -125,7 +131,7 @@ const RegisterPage = () => {
                 onChange={handleChange}
                 placeholder="Enter your Email"
                 name="email"
-                className="border-none outline-none placeholder:text-gray-400"
+                className="w-full border-none outline-none placeholder:text-gray-400"
               />
               <div className="absolute w-0 group-hover:w-full duration-300 transition-all  h-[2px] bg-black bottom-1 left-0"></div>
             </div>
@@ -140,13 +146,18 @@ const RegisterPage = () => {
                   Password
                 </label>
               </div>
-              <input
-                type="password"
-                onChange={handleChange}
-                placeholder="Enter your password"
-                name="password"
-                className="border-none outline-none placeholder:text-gray-400"
-              />
+              <div className="flex items-center justify-between">
+                <input
+                  type={`${checkPassword ? 'text' : 'password'}`}
+                  onChange={handleChange}
+                  placeholder="Enter your password"
+                  name="password"
+                  className="border-none outline-none placeholder:text-gray-400 w-full"
+                />
+                <button type="button" onClick={handleCheckPassword}>
+                  {checkPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+                </button>
+              </div>
               <div className="absolute w-0 group-hover:w-full duration-300 transition-all  h-[2px] bg-black bottom-1 left-0"></div>
             </div>
             <div className="flex flex-col space-y-2 relative group">

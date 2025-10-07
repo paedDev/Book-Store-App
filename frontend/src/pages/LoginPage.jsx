@@ -6,6 +6,7 @@ import { FaUserLarge } from "react-icons/fa6";
 import { RiLockPasswordLine } from "react-icons/ri";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { FaUsersCog, FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 const LoginPage = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState({
@@ -13,13 +14,16 @@ const LoginPage = () => {
     password: "",
   });
   const [loading, setLoading] = useState(false);
+  const [checkPassword, setCheckPassword] = useState(false);
   const handleChange = (e) => {
     setForm((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
-
+  const handleSetCheckPassword = () => {
+    setCheckPassword((prevCheck) => !prevCheck);
+  };
   const handleSubmit = async (e) => {
     const { email, password } = form;
     e.preventDefault();
@@ -113,13 +117,18 @@ const LoginPage = () => {
                   Password
                 </label>
               </div>
-              <input
-                type="password"
-                onChange={handleChange}
-                placeholder="Enter your password"
-                name="password"
-                className="border-none outline-none placeholder:text-gray-400"
-              />
+              <div className="flex items-center justify-between">
+                <input
+                  type={`${checkPassword ? 'text' : 'password'}`}
+                  onChange={handleChange}
+                  placeholder="Enter your password"
+                  name="password"
+                  className="border-none outline-none placeholder:text-gray-400 w-full"
+                />
+                <button type="button" onClick={handleSetCheckPassword}>
+                  {checkPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+                </button>
+              </div>
               <div className="absolute w-0 group-hover:w-full duration-300 transition-all  h-[2px] bg-black bottom-1 left-0"></div>
             </div>
             <button className="flex items-center justify-center w-full relative overflow-hidden rounded-xl group border border-gray-400 mb-10">
